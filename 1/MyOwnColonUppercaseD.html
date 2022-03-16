@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--  -->
+    <title>CBT tutorial</title>
+
+    <style>
+      :root {
+        font-family: "Comic Sans MS", "Wingdings 3";  /* Screw you if ya don't support comic sans. Have fun with Wingdings, ******. */
+        background: lightblue;
+
+        /* Globals. Fuck you, IE. */
+        --highlight-color: red;
+        --highlight-text: #0FF;
+      }
+
+      section {
+        margin: 10px;
+        padding: 10px;
+        border-radius: 20px;
+        text-align: justify;
+      }
+
+      .normal-section {
+        background-color: pink ;
+      }
+
+      .special-section {
+        background-color: brown;
+        
+        border-width: 10px;
+        border-color: var(--highlight-color);
+        border-style: dashed;
+      }
+
+      .copyright-notice {
+        text-align: center;
+        color: red;
+
+        margin: 10px;
+        padding: 10px;
+        border-radius: 20px;
+        background-color: greenyellow;
+      }
+
+      .rounded-box {
+        margin: 10px;
+        padding: 10px;
+        border-radius: 50px;
+      }
+
+      .highlight {
+        border-style: solid;
+        border-color: var(--highlight-color);
+        color: var(--highlight-text);
+        background-color: blueviolet;
+        text-align: center;
+      }
+
+      header {
+        background-color: chartreuse;
+        margin: 0px 0px 30px 0px !important;
+        font-size: xx-large;
+        text-align: center;
+      }
+
+      .section-header {
+        text-align: center;
+      }
+
+      .button-like {
+        color: black;
+        background-color: lightgray;
+
+        border-width: 5px;
+        border-style: solid;
+
+        width: 10%;
+        text-align: center;
+      }
+
+      img {
+        width: 100%;
+        height: 100px;
+
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="rounded-box">
+      <marquee>
+        <h1>crazy bob's website</h1>
+      </marquee>
+    </header>
+
+    <main>
+      <section class="normal-section">
+        <h2 class="section-header">cool pix</h2>
+        <img src="https://c.tenor.com/ZoeutLRrAHcAAAAM/dishwasher-cat-dishwasher.gif">
+        <img src="https://images6.fanpop.com/image/photos/40000000/Cat-s-bathroom-privacy-animated-gif-thecountess-40068513-300-225.gif">
+      </section>
+
+      <section class="normal-section">
+        <h2 class="section-header">manifesto</h2>
+        <p>we are uncovering better ways of developing
+          software by doing it and helping others do it.
+          through this work we have come to value:</p>
+
+        <div class="rounded-box highlight">
+          <p><b>processes and tools</b> over individuals and interactions</p>
+          <p><b>comprehensive documentation</b> over working software</p>
+          <p><b>contract negotiation</b> over customer collaboration</p>
+          <p><b>following a plan</b> over responding to change</p>
+        </div>
+
+        <p><b>Lorem Ipsum</b> - placeholder text</p>
+      </section>
+
+      <section class="special-section">
+        <form action="https://www.freecatphotoapp.com/submit-cat-photo">
+          <label for="option-bored"><input id="option-bored" type="radio" name="bored" value="nyeh" checked>bored</label>
+          <label for="option-really-bored"><input id="option-really-bored" type="radio" name="bored" value="nyeh">super fun</label><br>
+          <p class="rounded-box button-like">Can't submit :D</p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="copyright-notice">
+      <div class="copyright-notice">
+        <h3>(c) Copyrite 1999: me</h3>
+      </div>
+    </footer>
+  </body>
+</html>
