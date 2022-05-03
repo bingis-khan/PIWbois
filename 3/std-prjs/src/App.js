@@ -8,7 +8,7 @@ import Navigation from './components/Navigation/Navigation';
 import Add from './components/Add/Add';
 import SendMessage from './components/SendMessage/SendMessage';
 
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 
 
 /* 
@@ -57,8 +57,14 @@ const useLocalItems = (storageName, defaults) => {
 };
 
 function App() {
+  const navigate = useNavigate();
   const [students, addStudent] = useLocalItems('students', defaultStudents);
   const [groups, addGroup] = useLocalItems('groups', defaultGroups);
+
+  const thenRedirect = (f, to) => (arg) => {
+    f(arg);
+    navigate(to);
+  } 
 
   return (
     <div className='App'>
@@ -67,7 +73,7 @@ function App() {
       <Routes>
         <Route path='/students' element={<StudentSearch elems={students} />} />
         <Route path='/groups' element={<GroupSearch elems={groups} />} />
-        <Route path='/add' element={<Add onNewStudent={addStudent} onNewGroup={addGroup} students={students} />} />
+        <Route path='/add' element={<Add onNewStudent={thenRedirect(addStudent, '/students')} onNewGroup={thenRedirect(addGroup, '/groups')} students={students} />} />
         <Route path='/:type/:id/send' element={<SendMessage students={students} groups={groups} />} />
 
         {/* Default "site" is the student search. */}
