@@ -1,12 +1,18 @@
 import GroupMember from './GroupMember';
+import Card from '../UI/Card/Card';
+
+import classes from './Group.module.css';
 
 const Group = (props) => {
   const g = props.group;
   return (
-    <div className='profile'>
-      <p>{g.name}</p>
-      <p>{g.description}</p>
-      <div>
+    <Card className={classes['group-card']}>
+      <h1>Group: {g.name}</h1>
+      <Card>
+        <p>{g.description}</p>
+      </Card>
+      <Card>
+        <h2>Members</h2>
         {g.members.map((sr, si) => (
           <GroupMember
             role={sr.role}
@@ -14,9 +20,9 @@ const Group = (props) => {
             key={`group-${props.i}-student-${si}`}
           />
         ))}
-      </div>
+      </Card>
       <p>{g.subject}</p>
-    </div>
+    </Card>
   );
 };
 

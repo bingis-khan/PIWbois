@@ -44,6 +44,8 @@ const defaultGroups = [
   }
 ];
 
+
+// Helps me store (((persistent))) data.
 const useLocalItems = (storageName, defaults) => {
   const [item, setItems] = useState(JSON.parse(localStorage.getItem(storageName)) ?? defaults);
   const addItem = (item) => setItems(items => {

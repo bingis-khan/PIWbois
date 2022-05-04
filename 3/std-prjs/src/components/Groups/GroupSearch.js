@@ -2,6 +2,9 @@ import makeSearchable from '../Searchable/Searchable/Searchable';
 import SendMessageButton from '../SendMessage/SendMessageButton';
 import { studentAttributes } from '../Students/StudentSearch';
 import Group from './Group';
+import Card from '../UI/Card/Card';
+import classes from './Group.module.css';
+
 
 const groupAttributes = (g) => [
   g.name,
@@ -11,10 +14,10 @@ const groupAttributes = (g) => [
 ];
 
 const GroupSearch = makeSearchable('Find groups:', groupAttributes, (g, i) => (
-  <div key={'group-' + i}>
+  <Card key={'group-' + i} className={classes['group-entry']}>
     <Group group={g} i={i} />
-    <SendMessageButton type='group' to={i} />
-  </div>
+    <SendMessageButton className={classes['send-message-button']} type='group' to={i} />
+  </Card>
 ));
 
 export default GroupSearch;

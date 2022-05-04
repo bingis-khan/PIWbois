@@ -2,6 +2,8 @@ import { useState } from 'react';
 
 import Display from './../Display/Display';
 import Search from './../Search/Search';
+import Card from '../../UI/Card/Card';
+import classes from './Searchable.module.css';
 
 
 // props.elems : [elem]
@@ -14,10 +16,10 @@ const makeSearchable = (prompt, filterElem, toComponent) => (props) => {
   const elems = props.elems.filter(e => filterElem(e).some(s => s.includes(filter))).map(toComponent);
 
   return (
-    <div>
+    <Card className={classes.searchable}>
       <Search text={prompt} onFilterUpdate={setFilter} />
       <Display elems={elems} />
-    </div>
+    </Card>
   );
 }
 

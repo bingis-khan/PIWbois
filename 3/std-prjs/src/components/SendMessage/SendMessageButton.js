@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
+import Button from "../UI/Button/Button";
+import classes from './SendMessage.module.css';
 
 const SendMessageButton = (props) => {
   return (
     <Link to={`/${props.type}/${props.to}/send`}>
-      <button>Send message</button>
+      <Button className={`${classes.button} ${props.className}`}></Button>
     </Link>
   );
 };

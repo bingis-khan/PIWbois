@@ -1,11 +1,15 @@
+import Card from '../UI/Card/Card';
+import classes from './Student.module.css';
+
 const Student = (props) => {
   const s = props.student;
   return (
-    <div className='profile'>
+    <Card className={classes['student-card']}>
+      <h2>{s.name}</h2>
       <p>{s.description}</p>
-      <p>{s.tags}</p>
-      <p>{s.subjects}</p>
-    </div>
+      <p>Tags: {s.tags}</p>
+      <p>Subjects: {s.subjects}</p>
+    </Card>
   );
 };
 

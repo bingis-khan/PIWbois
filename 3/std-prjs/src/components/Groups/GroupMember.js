@@ -1,11 +1,12 @@
 import Student from '../Students/Student';
-
+import Card from '../UI/Card/Card';
+import classes from './Group.module.css';
 
 const GroupMember = (props) => (
-  <div>
-    <h2>{props.role}</h2>
+  <Card className={classes['group-member']}>
+    <h2>Role: {props.role}</h2>
     <Student student={props.student} />
-  </div>
+  </Card>
 );
 
 export default GroupMember;
