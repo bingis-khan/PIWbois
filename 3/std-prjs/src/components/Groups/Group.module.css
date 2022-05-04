@@ -1,0 +1,27 @@
+
+
+.group-entry {
+  display: flex;
+  background-color: antiquewhite;
+
+  padding: 0; 
+}
+
+.group-card {
+  background-color: azure;
+  min-width: 70%;
+  width: fit-content;
+  margin: 20px;
+}
+
+.group-card div {
+  box-shadow: none;
+}
+
+.group-member {
+  background-color: beige;
+}
+
+.group-member div {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}

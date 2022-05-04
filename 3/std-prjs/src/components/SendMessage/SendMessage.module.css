@@ -1,0 +1,16 @@
+.button {
+  padding: 30px;
+  border-radius: 10%;
+  background: url('https://stockbroker.pl/wp-content/uploads/2021/01/icon-envelope.png') no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  margin: 10px;
+}
+
+
+.button:hover,
+.button:active {
+  background: url('https://stockbroker.pl/wp-content/uploads/2021/01/icon-envelope.png') no-repeat;
+  background-size: cover;
+  border-color: burlywood;
+}
