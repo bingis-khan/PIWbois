@@ -30,17 +30,30 @@ const defaultStudents = [
     tags: ['dddd'],
     subjects: ['asd'],
   },
+  {
+    name: 'G O N Z A L O',
+    email: 'gonzalo@gonzalo',
+    description: 'gonzalo',
+    tags: ['gonzalo', 'gonzalo', 'gonzalo'],
+    subjects: ['gonzalo'],
+  },
 ];
 
 const defaultGroups = [
   {
-    name: 'gruppe sechs',
+    name: 'cool bois',
 
     // Note: I assume these are not the same students as the ones searching for a group.
     // So, these two lists should be completely disjointed **by definition**.
     members: [{ student: defaultStudents[0], role: 'smoothster' }, { student: defaultStudents[1], role: 'serial killer' }],
     description: 'suicide fun-cult, fun suicide cult',
     subject: 'alchemy'
+  },
+  {
+    name: 'iFruit',
+    members: [{ student: defaultStudents[2], role: 'fall guy' }],
+    description: 'eyyyyyyyyyyyyyyyyy',
+    subject: 'scam'
   }
 ];
 
