@@ -1,0 +1,86 @@
+.choice {
+  margin: 10px;
+}
+
+.choice label {
+  padding-left: 20px;
+  padding-right: 5px;
+  margin: auto;
+}
+
+.choice input {
+  transform: scale(2);
+}
+
+
+.add-group div {
+  margin: 10px;
+  padding: 7px;
+
+  box-shadow: none;
+  border-style:inset;
+  border-width: 2px;
+}
+
+.add-group label {
+  padding-right: 5px;
+}
+
+.current-members {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26) !important;
+  border-style: solid !important; 
+  border-width: 2px !important;
+}
+
+.select-student-type {
+  padding: 10px;
+}
+
+.select-student-type label {
+  padding-right: 5px;
+  padding-left: 20px;
+  margin: auto;
+}
+
+.select-student-type input {
+  transform: scale(1.5);
+}
+
+.select-role {
+  padding: 8px;
+}
+
+.select-role label {
+  padding-right: 5px;
+}
+
+
+.add-student div {
+  margin: 10px;
+  padding: 7px;
+
+  box-shadow: none;
+  border-style:inset;
+  border-width: 2px;
+}
+
+.add-student label {
+  padding-right: 5px;
+}
+
+.add-student button {
+  margin: 5px;
+}
+
+.add-student textarea {
+  width: 80%;
+  resize: none;
+}
+
+.find-student {
+  padding: 10px;
+}
+
+.find-student button {
+  transform: scale(0.8);
+}

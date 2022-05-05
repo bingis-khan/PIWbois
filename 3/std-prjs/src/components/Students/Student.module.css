@@ -6,3 +6,7 @@
   min-width: 200px;
   block-size: fit-content;
 }
+
+.student-entry {
+  display: flex;
+}

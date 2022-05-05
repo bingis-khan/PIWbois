@@ -70,17 +70,21 @@ function App() {
 
   return (
     <div className='App'>
-      <Navigation />
+      <header>
+        <Navigation />
+      </header>
 
-      <Routes>
-        <Route path='/students' element={<StudentSearch elems={students} />} />
-        <Route path='/groups' element={<GroupSearch elems={groups} />} />
-        <Route path='/add' element={<Add onNewStudent={thenRedirect(addStudent, '/students')} onNewGroup={thenRedirect(addGroup, '/groups')} students={students} />} />
-        <Route path='/:type/:id/send' element={<SendMessage students={students} groups={groups} />} />
+      <main>
+        <Routes>
+          <Route path='/students' element={<StudentSearch elems={students} />} />
+          <Route path='/groups' element={<GroupSearch elems={groups} />} />
+          <Route path='/add' element={<Add onNewStudent={thenRedirect(addStudent, '/students')} onNewGroup={thenRedirect(addGroup, '/groups')} students={students} />} />
+          <Route path='/:type/:id/send' element={<SendMessage students={students} groups={groups} />} />
 
-        {/* Default "site" is the student search. */}
-        <Route exact path='/' element={<Navigate replace to='/students' />} />
-      </Routes>
+          {/* Default "site" is the student search. */}
+          <Route exact path='/' element={<Navigate replace to='/students' />} />
+        </Routes>
+      </main>
     </div>
   );
 }

@@ -13,7 +13,9 @@ import classes from './Searchable.module.css';
 const makeSearchable = (prompt, filterElem, toComponent) => (props) => {
   const [filter, setFilter] = useState('');
 
-  const elems = props.elems.filter(e => filterElem(e).some(s => s.includes(filter))).map(toComponent);
+  // Fixed: during search, indexes would not match the given list and sending a message would redirect to another list.
+  // Extremely bad fix for not having IDs in a datatype.
+  const elems = props.elems.map((e, i) => [e, i]).filter(([e, _]) => filterElem(e).some(s => s.includes(filter))).map(([e, i]) => toComponent(e, i));
 
   return (
     <Card className={classes.searchable}>

@@ -1,4 +1,7 @@
 import { useRef } from 'react';
+import Card from '../UI/Card/Card';
+import Button from '../UI/Button/Button';
+import classes from './Add.module.css';
 
 const AddStudent = (props) => {
   const submitHandler = (event) => {
@@ -27,29 +30,44 @@ const AddStudent = (props) => {
     useRef(),
   ];
 
+  // I would have abstracted the label-input pair to a different element called Input,
+  // but I'm *really* short on time.
   return (
-    <form onSubmit={submitHandler}>
-      <label htmlFor='student-name'>Name:</label>
-      <input id='student-name' type='text' ref={nameRef} required />
+    <form className={classes['add-student']} onSubmit={submitHandler}>
+      <Card>
+        <label htmlFor='student-name'>Name:</label>
+        <input id='student-name' type='text' ref={nameRef} required />
+      </Card>
 
-      <label htmlFor='student-email'>Email:</label>
-      <input id='student-email' type='email' ref={emailRef} required />
+      <Card>
+        <label htmlFor='student-email'>Email:</label>
+        <input id='student-email' type='email' ref={emailRef} required />
+      </Card>
 
-      <label htmlFor='student-description'>Description:</label>
-      <textarea
-        id='student-description'
-        rows='5'
-        ref={descriptionRef}
-        required
-      />
+      <Card>
+        <label htmlFor='student-description'>Description:</label>
+        <br />
+        <textarea
+          id='student-description'
+          rows='5'
+          ref={descriptionRef}
+          required
+        />
+      </Card>
 
-      <label htmlFor='student-tags'>Tags:</label>
-      <input id='student-tags' type='text' ref={tagsRef} required />
+      <Card>
+        <label htmlFor='student-tags'>Tags:</label>
+        <input id='student-tags' type='text' ref={tagsRef} required />
+      </Card>
 
-      <label htmlFor='student-subjects'>Subjects:</label>
-      <input id='student-subjects' type='text' ref={subjectsRef} required />
+      <Card>
+        <label htmlFor='student-subjects'>Subjects:</label>
+        <input id='student-subjects' type='text' ref={subjectsRef} required />
+      </Card>
 
-      <button>Add the boi</button>
+      <center>
+        <Button type='submit'>Add student</Button>
+      </center>
     </form>
   );
 };

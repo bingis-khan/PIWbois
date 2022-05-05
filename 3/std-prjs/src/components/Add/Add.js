@@ -2,6 +2,8 @@ import { useState } from 'react';
 
 import AddGroup from './AddGroup';
 import AddStudent from './AddStudent';
+import Card from '../UI/Card/Card';
+import classes from './Add.module.css';
 
 
 const Add = (props) => {
@@ -15,16 +17,17 @@ const Add = (props) => {
   
 
   return (
-    <div>
+    <Card>
       {/* Mothafucka is two-way bound. */}
-      <label htmlFor='radio_student'>Student</label>
-      <input id='radio_student' name='studentOrGroup' type='radio' checked={selection === 'student'} onChange={() => setSelection('student')}  />
-
-      <label htmlFor='radio_group'>Group</label>
-      <input id='radio_group' name='studentOrGroup' type='radio' checked={selection === 'group'} onChange={() => setSelection('group')} />
-
+      <center className={classes.choice}>
+        <label htmlFor='radio_student'>Student</label>
+        <input id='radio_student' name='studentOrGroup' type='radio' checked={selection === 'student'} onChange={() => setSelection('student')}  />
+        
+        <label htmlFor='radio_group'>Group</label>
+        <input id='radio_group' name='studentOrGroup' type='radio' checked={selection === 'group'} onChange={() => setSelection('group')} />
+      </center>
       {body}
-    </div>
+    </Card>
   );
 };
 

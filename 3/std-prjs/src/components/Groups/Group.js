@@ -21,7 +21,10 @@ const Group = (props) => {
           />
         ))}
       </Card>
+      <Card>
+      <h2>Subject</h2>
       <p>{g.subject}</p>
+      </Card>
     </Card>
   );
 };

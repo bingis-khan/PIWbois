@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/PIWbois/3/std-prjs/build/static/css/main.874cef99.chunk.css",
-    "main.js": "/PIWbois/3/std-prjs/build/static/js/main.456d31c3.chunk.js",
-    "main.js.map": "/PIWbois/3/std-prjs/build/static/js/main.456d31c3.chunk.js.map",
-    "runtime-main.js": "/PIWbois/3/std-prjs/build/static/js/runtime-main.2b23c6d2.js",
-    "runtime-main.js.map": "/PIWbois/3/std-prjs/build/static/js/runtime-main.2b23c6d2.js.map",
-    "static/js/2.963c3646.chunk.js": "/PIWbois/3/std-prjs/build/static/js/2.963c3646.chunk.js",
-    "static/js/2.963c3646.chunk.js.map": "/PIWbois/3/std-prjs/build/static/js/2.963c3646.chunk.js.map",
-    "static/js/3.f01c85d3.chunk.js": "/PIWbois/3/std-prjs/build/static/js/3.f01c85d3.chunk.js",
-    "static/js/3.f01c85d3.chunk.js.map": "/PIWbois/3/std-prjs/build/static/js/3.f01c85d3.chunk.js.map",
+    "main.css": "/PIWbois/3/std-prjs/build/static/css/main.8e63cc7c.chunk.css",
+    "main.js": "/PIWbois/3/std-prjs/build/static/js/main.6b0dd3bb.chunk.js",
+    "main.js.map": "/PIWbois/3/std-prjs/build/static/js/main.6b0dd3bb.chunk.js.map",
+    "runtime-main.js": "/PIWbois/3/std-prjs/build/static/js/runtime-main.9ffab4fb.js",
+    "runtime-main.js.map": "/PIWbois/3/std-prjs/build/static/js/runtime-main.9ffab4fb.js.map",
+    "static/js/2.53215770.chunk.js": "/PIWbois/3/std-prjs/build/static/js/2.53215770.chunk.js",
+    "static/js/2.53215770.chunk.js.map": "/PIWbois/3/std-prjs/build/static/js/2.53215770.chunk.js.map",
+    "static/js/3.d23fdb9f.chunk.js": "/PIWbois/3/std-prjs/build/static/js/3.d23fdb9f.chunk.js",
+    "static/js/3.d23fdb9f.chunk.js.map": "/PIWbois/3/std-prjs/build/static/js/3.d23fdb9f.chunk.js.map",
     "index.html": "/PIWbois/3/std-prjs/build/index.html",
-    "static/css/main.874cef99.chunk.css.map": "/PIWbois/3/std-prjs/build/static/css/main.874cef99.chunk.css.map",
-    "static/js/2.963c3646.chunk.js.LICENSE.txt": "/PIWbois/3/std-prjs/build/static/js/2.963c3646.chunk.js.LICENSE.txt"
+    "static/css/main.8e63cc7c.chunk.css.map": "/PIWbois/3/std-prjs/build/static/css/main.8e63cc7c.chunk.css.map",
+    "static/js/2.53215770.chunk.js.LICENSE.txt": "/PIWbois/3/std-prjs/build/static/js/2.53215770.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.2b23c6d2.js",
-    "static/js/2.963c3646.chunk.js",
-    "static/css/main.874cef99.chunk.css",
-    "static/js/main.456d31c3.chunk.js"
+    "static/js/runtime-main.9ffab4fb.js",
+    "static/js/2.53215770.chunk.js",
+    "static/css/main.8e63cc7c.chunk.css",
+    "static/js/main.6b0dd3bb.chunk.js"
   ]
 }

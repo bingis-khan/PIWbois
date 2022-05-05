@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import Student from '../Students/Student';
 import Group from '../Groups/Group';
 import Popup from '../Popup/Popup';
-
+import classes from './SendMessage.module.css';
+import Button from '../UI/Button/Button';
 
 
 const SendMessage = (props) => {
@@ -18,6 +19,7 @@ const SendMessage = (props) => {
   const onSubmit = (event) => {
     event.preventDefault();
     sendMessage(message);
+    setMessage('');
   };
 
   // Nice name.
@@ -36,21 +38,25 @@ const SendMessage = (props) => {
 
   return (
     <div>
-      <Popup text='OH SHIDDDD' duration="1000" show={popup} onClear={() => setPopup(false)}  />
-      <div>{thing}</div>
-      <form onSubmit={onSubmit}>
-        <textarea
-          id='group-description'
-          rows='5'
-          value={message}
-          onChange={(event) => {
-            setMessage(event.target.value);
-          }}
-          required
-        />
+      <Popup text={`Message sent to ${type}.`} duration="2000" show={popup} onClear={() => setPopup(false)}  />
+      <center>
+        <div>{thing}</div>
+        <form className={classes.form} onSubmit={onSubmit}>
+          <textarea
+            id='group-description'
+            rows='5'
+            value={message}
+            onChange={(event) => {
+              setMessage(event.target.value);
+            }}
+            required
+            
+          />
 
-        <button>Send</button>
-      </form>
+          <br></br>
+          <Button type='submit'>Send</Button>
+        </form>
+      </center>
     </div>
   );
 };
