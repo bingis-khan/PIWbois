@@ -1,0 +1,9 @@
+version: "3.7"
+
+services:
+  app:
+    image: dupa
+    ports:
+    - 3000:3000
+    volumes:  # Huh, why do we need volumes? We got no persistent data here. Is this for live-reloading? Yeah.
+    - ./src:/app/src

@@ -1,0 +1,15 @@
+.searchbox {
+  /*  CSS from Card is overriding them, because modules happened to be grouped that way.
+      There are ways to solve this, but I don't have time. */
+  padding: 10px !important;
+  margin-bottom: 30px !important;
+  
+}
+
+.searchbox input {
+  width: 100%;
+  box-sizing: border-box;
+
+  /* https://stackoverflow.com/questions/5219175/how-to-make-an-element-width-100-minus-padding */
+}
+
