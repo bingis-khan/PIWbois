@@ -1,0 +1,37 @@
+[
+    {
+        "name": "bobby el dorade",
+        "email": "hotstud-ent@hotmail.ru",
+        "description": "some shitty description",
+        "tags": [
+            "retard"
+        ],
+        "subjects": [
+            "dupa"
+        ]
+    },
+    {
+        "name": "pissmeister",
+        "email": "grindset@binky.biz",
+        "description": "another one",
+        "tags": [
+            "dddd"
+        ],
+        "subjects": [
+            "asd"
+        ]
+    },
+    {
+        "name": "G O N Z A L O",
+        "email": "gonzalo@gonzalo",
+        "description": "gonzalo",
+        "tags": [
+            "gonzalo",
+            "gonzalo",
+            "gonzalo"
+        ],
+        "subjects": [
+            "gonzalo"
+        ]
+    }
+]

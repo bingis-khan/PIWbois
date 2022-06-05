@@ -1,0 +1,12 @@
+
+.student-card {
+  background-color: aquamarine;
+  text-align: left;
+  width: fit-content;
+  min-width: 200px;
+  block-size: fit-content;
+}
+
+.student-entry {
+  display: flex;
+}

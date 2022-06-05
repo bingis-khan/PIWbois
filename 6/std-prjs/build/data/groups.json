@@ -1,0 +1,60 @@
+[
+    {
+        "name": "cool bois",
+        "members": [
+            {
+                "student": {
+                    "name": "bobby el dorade",
+                    "email": "hotstud-ent@hotmail.ru",
+                    "description": "some shitty description",
+                    "tags": [
+                        "retard"
+                    ],
+                    "subjects": [
+                        "dupa"
+                    ]
+                },
+                "role": "smoothster"
+            },
+            {
+                "student": {
+                    "name": "pissmeister",
+                    "email": "grindset@binky.biz",
+                    "description": "another one",
+                    "tags": [
+                        "dddd"
+                    ],
+                    "subjects": [
+                        "asd"
+                    ]
+                },
+                "role": "serial killer"
+            }
+        ],
+        "description": "suicide fun-cult, fun suicide cult",
+        "subject": "alchemy"
+    },
+    {
+        "name": "iFruit",
+        "members": [
+            {
+                "student": {
+                    "name": "G O N Z A L O",
+                    "email": "gonzalo@gonzalo",
+                    "description": "gonzalo",
+                    "tags": [
+                        "gonzalo",
+                        "gonzalo",
+                        "gonzalo"
+                    ],
+                    "subjects": [
+                        "gonzalo"
+                    ]
+                },
+                "role": "fall guy"
+            }
+        ],
+        "description": "eyyyyyyyyyyyyyyyyy",
+        "subject": "scam"
+    }
+]
