@@ -12,6 +12,10 @@ import {
 
 const googleProvider = new GoogleAuthProvider();
 
+// Do that adding a user to the "users" database when registering.
+// It's not yet needed (accounts are different than user ).
+//export const addToUsers = async ()
+
 // Copied verbatim from "tha source". 
 export const logInWithGoogle = async () => {
     try {
@@ -27,8 +31,7 @@ export const logInWithGoogle = async () => {
             await setDoc(q, {
                 name: user.displayName,
                 authProvider: "google",
-                email: user.email,
-                roles: ["admin", "dog walker", "jedi"]
+                email: user.email
             });
         }
 

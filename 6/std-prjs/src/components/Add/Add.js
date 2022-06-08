@@ -11,11 +11,10 @@ const Add = (props) => {
 
   let body = null;
   if (selection === 'student')
-    body = (<AddStudent onNewStudent={props.onNewStudent} />);
+    body = (<AddStudent prototype={props.prototype} onNewStudent={props.onNewStudent} />);
   else if (selection === 'group')
-    body = (<AddGroup onNewGroup={g => { alert(JSON.stringify(g)); props.onNewGroup(g); } } students={props.students} />);
+    body = (<AddGroup prototype={props.prototype} onNewGroup={props.onNewGroup} students={props.students} />);
   
-
   return (
     <Card>
       {/* Mothafucka is two-way bound. */}

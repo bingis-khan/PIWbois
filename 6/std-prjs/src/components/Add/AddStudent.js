@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import Card from '../UI/Card/Card';
 import Button from '../UI/Button/Button';
 import classes from './Add.module.css';
@@ -16,6 +16,15 @@ const AddStudent = (props) => {
       subjects: subjectsRef.current.value.split(),
       img: null,
     };
+
+    if (props.prototype) {
+      student.uid = props.prototype.uid;
+      student.img = props.prototype.img;
+
+      console.log(student);
+      props.onNewStudent(student);
+      return;
+    }
 
     // Async URL-fetchin'
     newImageURL().then(url => {
@@ -35,6 +44,19 @@ const AddStudent = (props) => {
     useRef(),
     useRef(),
   ];
+
+  useEffect(() => {
+    const proto = props.prototype;
+    if (!proto) 
+      return;
+    
+    // wtf
+    nameRef.current.value = proto.name;
+    emailRef.current.value = proto.email;
+    descriptionRef.current.value = proto.description;
+    tagsRef.current.value = proto.tags.join(' ');
+    subjectsRef.current.value = proto.subjects.join(' ');
+  }, [props.prototype]);
 
   // I would have abstracted the label-input pair to a different element called Input,
   // but I'm *really* short on time.
@@ -72,7 +94,7 @@ const AddStudent = (props) => {
       </Card>
 
       <center>
-        <Button type='submit'>Add student</Button>
+        <Button type='submit'>{props.text ?? 'Add Student'}</Button>
       </center>
     </form>
   );

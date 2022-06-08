@@ -6,6 +6,7 @@ import Card from '../UI/Card/Card';
 import classes from './Student.module.css';
 import FollowButton from '../Follow/FollowButton';
 import CheckProfileButton from '../Profile/CheckProfileButton';
+import LinkButton from '../UI/Button/LinkButton';
 
 const studentAttributes = s => [s.description, ...s.tags, ...s.subjects];
 
@@ -15,6 +16,7 @@ const extendedStudentCard = (s, i) =>
     <SendMessageButton type='student' to={i} />
     <FollowButton type='student' who={s.name} />
     <CheckProfileButton to={i} />
+    <LinkButton to={`/edit/student/${i}`} text='Edit' />
   </Card>;
 
 const StudentSearch = makeSearchable('Find students', studentAttributes, extendedStudentCard);

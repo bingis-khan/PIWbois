@@ -12,8 +12,12 @@ import User from './Context';
 import { newImageURL } from './Images';
 import Profile from './components/Profile/Profile';
 import Following from './components/Follow/Following';
+import Edit from './components/Add/Edit';
 
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+
+import { firestore } from './firebase/init';
+import { collection, addDoc, getDocs, doc, updateDoc } from 'firebase/firestore';
 
 
 // Kinda bad - we can't really check the *real* base URL, so this
@@ -41,17 +45,17 @@ const useLocalItems = (storageName, defaults) => {
 
 const followReducer = (state, action) => {
   let stc = { students: new Set(state.students), groups: new Set(state.groups) }
-  
+
   let followSet;
   switch (action.in) {
     case 'student':
       followSet = stc.students;
       break;
-    
+
     case 'group':
       followSet = stc.groups;
       break;
-    
+
     default:
       throw new Error(`Invalid dispatch type ${action.in}.`);
   }
@@ -64,7 +68,7 @@ const followReducer = (state, action) => {
     case 'remove':
       followSet.delete(action.value);
       break;
-    
+
     default:
       throw new Error(`Invalid action ${action.do}.`);
   }
@@ -72,10 +76,66 @@ const followReducer = (state, action) => {
   return stc;
 }
 
+
+
 function App() {
   const navigate = useNavigate();
-  const [students, addStudent, setStudents] = useLocalItems('students', null);
-  const [groups, addGroup, setGroups] = useLocalItems('groups', null);
+  const [students, setStudents] = useState([]);
+  const [groups, setGroups] = useState([]);
+
+  const addStudent = (student) => {
+    try {
+      addDoc(collection(firestore, 'students'), student).then(dr => setStudents(ss => [{ uid: dr.id, ...student }, ...ss]));
+    } catch (err) {
+      console.log({ err });
+    }
+  };
+
+  const addGroup = async (group) => {
+    try {
+      await addDoc(collection(firestore, 'groups'), group).then(dr => setGroups(gs => [{ uid: dr.id, ...group }, ...gs]));
+    } catch (err) {
+      console.log({ err });
+    }
+  }
+
+  const editStudent = async (student, i) => {
+    const { uid, ...noUIDStudent } = student;
+
+    console.log('edit student', uid, noUIDStudent);
+    
+    try {
+      const q = doc(firestore, "students", student.uid);
+      
+      await updateDoc(q, noUIDStudent).then(() => setStudents(ss => {
+        const newSS = [...ss];
+        newSS[i] = student;
+
+        return newSS;
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const editGroup = async (group, i) => {
+    const { uid, ...noUIDGroup } = group;
+
+    console.log('edit group', uid, noUIDGroup);
+    
+    try {
+      const q = doc(firestore, "groups", group.uid);
+      
+      await updateDoc(q, noUIDGroup).then(() => setGroups(gs => {
+        const newGS = [...gs];
+        newGS[i] = group;
+
+        return newGS;
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   // User.
   const [currentUserArr, , setUsers] = useLocalItems('currentUser', []);
@@ -88,13 +148,17 @@ function App() {
   // We use a global follow list, because... I'm just tired, man.
   const [follows, dispatch] = useReducer(followReducer, { students: new Set(), groups: new Set() });
 
+  // I hate myself.
+  const [, setRefresh] = useState(false);
+  const forceRefresh = () => setRefresh((s) => !s);
+
   const userContext = useMemo(
-    () => ({ currentUser, setUser, users, addUser, follows, dispatch }),
+    () => ({ currentUser, setUser, users, addUser, follows, dispatch, refresh: forceRefresh }),
     [currentUser, users, follows]
   );
 
-  const thenRedirect = (f, to) => (arg) => {
-    f(arg);
+  const thenRedirect = (f, to) => (...args) => {
+    f(...args);
     navigate(to);
   }
 
@@ -114,23 +178,33 @@ function App() {
 
   useEffect(() => {
     const fetchStudents = async () => {
-      const students = await fetchJSON('students.json');
+      const qs = await getDocs(collection(firestore, 'students'));
+      const students = [];
+      qs.forEach(dd => students.push( { uid: dd.id, ...dd.data() } ));
 
       const studentsWithPic = await Promise.all(students.map(async s => {
-        const img = await newImageURL();
-        return { ...s, img: img };
+        if (!s.img) {
+          const img = await newImageURL();
+          return { ...s, img: img };
+        } else {
+          return s;
+        }
       }));
 
       setStudents(studentsWithPic);
     }
 
     const fetchGroups = async () => {
-      const groups = await fetchJSON('groups.json');
+      const qs = await getDocs(collection(firestore, 'groups'));
+      const groups = [];
+      qs.forEach(dd => groups.push( { uid: dd.id, ...dd.data() } ));
+
+      console.log('set groups: ', groups);
       setGroups(groups);
     }
 
-    if (!students) fetchStudents();
-    if (!groups) fetchGroups();
+    fetchStudents();
+    fetchGroups();
   }, []);  // Empty on purpose - the suggestion "setGroups" and "setStudents" is *wrong* - this causes a rerendering loop, where data is fetched constantly.
 
   return (
@@ -145,6 +219,7 @@ function App() {
             <Route path='/students' element={<StudentSearch elems={students} />} />
             <Route path='/groups' element={<GroupSearch elems={groups} />} />
             <Route path='/add' element={<Add onNewStudent={thenRedirect(addStudent, '/students')} onNewGroup={thenRedirect(addGroup, '/groups')} students={students} />} />
+            <Route path='/edit/:type/:id' element={<Edit students={students} groups={groups} onStudentEdit={thenRedirect(editStudent, '/students')} onGroupEdit={thenRedirect(editGroup, '/groups')} />} />
             <Route path='/:type/:id/send' element={students && groups ? <SendMessage students={students} groups={groups} /> : <p>Loading st00d</p>} />
             <Route path='/login' element={<Login />} />
             <Route path='/:id/profile' element={students && <Profile students={students} />} />

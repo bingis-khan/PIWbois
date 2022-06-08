@@ -11,7 +11,9 @@ const User = createContext({
 
     // Oh god, there's more.
     follows: {},
-    dispatch: () => {}
+    dispatch: () => {},
+
+    refresh: () => {}
 });
 
 export default User;

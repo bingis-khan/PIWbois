@@ -10,6 +10,7 @@ import Login from '../Login/Login';
 
 const Navigation = () => {
   const [user, loading, error] = useAuthState(auth);
+
   return (
     <nav className={classes.nav}>
       <Card>

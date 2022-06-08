@@ -21,6 +21,20 @@ class AddGroup extends React.Component {
 
       role: '' 
     };
+
+    if (props.prototype) {
+      const p = props.prototype;
+      this.state = {
+        uid: p.uid,
+        groupName: p.name,
+        description: p.description,
+        subject: p.subject,
+
+        members: p.members,
+
+        role: ''
+      };
+    }
   }
 
   submitHandler = (event) => {
@@ -33,6 +47,9 @@ class AddGroup extends React.Component {
       subject: subject,
       members: members
     };
+
+    if (this.state.uid)
+      group.uid = this.state.uid;
 
     if (members.length === 0) {
       alert('Groups with no members are not allowed.');
@@ -66,7 +83,7 @@ class AddGroup extends React.Component {
       <>
         <form className={classes['add-group']} onSubmit={this.submitHandler}>
           <center>
-            <Button>Create group</Button>
+            <Button type='submit'>{this.props.text ?? 'Create group'}</Button>
           </center>
 
           <Card>

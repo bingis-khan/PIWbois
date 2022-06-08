@@ -1,16 +1,22 @@
-import { useContext, useRef } from 'react';
+import { useContext, useRef, useState } from 'react';
 
 import Card from '../UI/Card/Card';
 import Button from '../UI/Button/Button';
 import User from '../../Context';
 import { logInWithGoogle, logout } from '../../firebase/users';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { useAuthState, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, reload } from 'firebase/auth';
 import { auth } from '../../firebase/init';
 
 
 // Named "Login", but actually Login + Register.
 const Login = () => {
     const [user, loading, error] = useAuthState(auth);
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
+    const refresh = useContext(User).refresh;
+
+    const [loginError, setLoginError] = useState(null);
 
     const usernameRef = useRef();
     const passwordRef = useRef();
@@ -20,32 +26,36 @@ const Login = () => {
 
         // Magick.
         const submitType = event.nativeEvent.submitter.value;
-        const username = usernameRef.current.value;
+        const email = usernameRef.current.value;
         const password = passwordRef.current.value;
 
         console.log(submitType);
 
-        const ctx = null;
-
         // Very, and I mean *VERY* simple login.
         switch (submitType) {
             case 'login': {
-                const user = ctx.users.filter(us => us.username === username && us.password === password)[0];
-                if (!user) {
-                    alert('Invalid credentials.');
-                    break;
-                }
-
-                // Heh, that's pretty bad.
-                ctx.setUser(user);
-
+                signInWithEmailAndPassword(auth, email, password).catch(error => {
+                    setLoginError(error);
+                });
                 break;
             }
 
             case 'register': {
-                const user = { username: username, password: password, follows: new Set() };
-                ctx.addUser(user);
-                ctx.setUser(user);
+                createUserWithEmailAndPassword(auth, email, password).then(userData => {
+                    // update profile does not seem to refresh user.
+                    // A, gówno, tu my idziemy znów.
+                    // I'll fix it later. 
+                    updateProfile({
+                        displayName: userData.user.email
+                    }).then(() => {
+
+                        // I hate myself, but it works. It should be done automatically.
+                        // I guess a new contrib. idea. Cool.
+                        refresh();
+                    });
+                }).catch(error => {
+                    setLoginError(error);
+                });
                 break;
             }
 
@@ -58,17 +68,17 @@ const Login = () => {
         }
     }
 
-    if (loading)
+    if (loading || updating)
         return
             <Card>
                 <p>Loadin'</p>
             </Card> 
         ;
     
-    if (error)
+    if (error || updateError)
         return
             <Card>
-                <p>Error: {error}</p>
+                <p>Error: {error || updateError}</p>
             </Card>
         ;
 
@@ -86,6 +96,8 @@ const Login = () => {
                 <Button type='submit' name='action' value='login' >Login</Button>
                 <Button type='submit' name='action' value='register' >Register</Button>
                 <Button type='submit' name='action' value='google'>Login with G00ble</Button>
+
+                {loginError && <p>WTF: {loginError.message}</p>}
             </form>
         </Card>
 

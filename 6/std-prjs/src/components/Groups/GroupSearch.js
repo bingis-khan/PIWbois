@@ -5,6 +5,7 @@ import Group from './Group';
 import Card from '../UI/Card/Card';
 import classes from './Group.module.css';
 import FollowButton from '../Follow/FollowButton';
+import LinkButton from '../UI/Button/LinkButton';
 
 
 const groupAttributes = (g) => [
@@ -19,6 +20,7 @@ const extendedGroupCard = (g, i) =>
     <Group group={g} i={i} />
     <SendMessageButton className={classes['send-message-button']} type='group' to={i} />
     <FollowButton type='group' who={g.name} />
+    <LinkButton to={`/edit/group/${i}`} text='Edit' />
   </Card>
 
 const GroupSearch = makeSearchable('Find groups:', groupAttributes, extendedGroupCard);
