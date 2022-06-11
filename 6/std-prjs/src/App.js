@@ -87,7 +87,7 @@ function App() {
     try {
       addDoc(collection(firestore, 'students'), student).then(dr => setStudents(ss => [{ uid: dr.id, ...student }, ...ss]));
     } catch (err) {
-      console.log({ err });
+      alert(err);
     }
   };
 
@@ -95,7 +95,7 @@ function App() {
     try {
       await addDoc(collection(firestore, 'groups'), group).then(dr => setGroups(gs => [{ uid: dr.id, ...group }, ...gs]));
     } catch (err) {
-      console.log({ err });
+      alert(err);
     }
   }
 
@@ -114,7 +114,9 @@ function App() {
         return newSS;
       }));
     } catch (err) {
-      console.log(err);
+
+      // Most likely insufficient permissions.
+      alert(err);
     }
   }
 
@@ -133,7 +135,7 @@ function App() {
         return newGS;
       }));
     } catch (err) {
-      console.log(err);
+      alert(err);
     }
   }
 
