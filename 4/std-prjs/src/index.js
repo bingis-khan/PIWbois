@@ -9,7 +9,7 @@ import { BrowserRouter } from 'react-router-dom';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename='/PIWbois/3/std-prjs/build/'>
+    <BrowserRouter basename='/PIWbois/4/std-prjs/build/'>
       <App />
     </BrowserRouter>
   </React.StrictMode>
